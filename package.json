@@ -1,0 +1,41 @@
+{
+  "name": "ifeeds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all --parallel watch:js server",
+    "build:js": "rollup --config",
+    "watch:js": "rollup --config --watch",
+    "server": "servor dist --reload --browse",
+    "minify:js": "terser ./dist/js/feeds.js --compress --mangle --source-map --output ./dist/js/feeds.min.js",
+    "compile:js": "npm-run-all build:js minify:js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zkreations/feeds.git"
+  },
+  "keywords": [],
+  "author": "zkreations <daniel@zkreations.com> (https://zkreations.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zkreations/feeds/issues"
+  },
+  "homepage": "https://github.com/zkreations/feeds#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "eslint": "^8.7.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.64.0",
+    "servor": "^4.0.2",
+    "terser": "^5.14.2"
+  }
+}
