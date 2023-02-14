@@ -29,7 +29,7 @@
     categorybg: '#f1f1f1',
     border: '#e6e6e6',
     background: '#ffffff',
-    label: false,
+    label: '',
     styles: true
   };
   function createScript(src) {
