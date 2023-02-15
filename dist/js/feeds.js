@@ -83,9 +83,7 @@
       </a>
       <div class='feeds-content'>
         <a class='feeds-category' target="_blank" href='${Default.url}search/label/{{category}}'>{{category}}</a>
-        <h2 class='feeds-title'>
-          <a class='feeds-link' target="_blank" href='{{url}}'>{{title}}</a>
-        </h2>
+        <a class='feeds-link' target="_blank" href='{{url}}'>{{title}}</a>
       </div>
     </div>`;
     const CONTAINER = document.querySelector('.widget-feeds');
@@ -153,12 +151,9 @@
           text-decoration: none;
           color: var(--feeds-title-weight, ${Default.title});
           font-weight: var(--feeds-title-weight, 500);
-        }
-        
-        .feeds-title {
-          margin: 0;
           font-size: var(--feeds-title-size, 1rem);
           margin-top: .5rem;
+          display: block;
         }
 
         .feeds-category {
@@ -204,6 +199,7 @@
 
         .feeds-row .feeds-content {
           text-align: center;
+          width: 100%;
         }
       `);
       }
@@ -238,7 +234,7 @@
     function copyArea(textarea, data) {
       textarea.value = `<script src='https://cdn.jsdelivr.net/npm/ifeeds@1/dist/js/feeds.min.js'></script>
 <script>Feeds.initPlugin({
-  max: ${data.max},  direction: '${data.direction}',  background: '${data.background}',  title: '${data.title}',  category: '${data.category}',  categorybg: '${data.categorybg}',  border: '${data.border}',  url: '${data.url}',  label: '${data.label}'
+  max: ${data.max}, direction: '${data.direction}', background: '${data.background}', title: '${data.title}', category: '${data.category}', categorybg: '${data.categorybg}', border: '${data.border}', url: '${data.url}', label: '${data.label}'
 })
 </script>`;
     }

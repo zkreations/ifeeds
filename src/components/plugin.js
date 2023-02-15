@@ -18,9 +18,7 @@ export function initPlugin (config) {
       </a>
       <div class='feeds-content'>
         <a class='feeds-category' target="_blank" href='${Default.url}search/label/{{category}}'>{{category}}</a>
-        <h2 class='feeds-title'>
-          <a class='feeds-link' target="_blank" href='{{url}}'>{{title}}</a>
-        </h2>
+        <a class='feeds-link' target="_blank" href='{{url}}'>{{title}}</a>
       </div>
     </div>`
 
@@ -93,12 +91,9 @@ export function initPlugin (config) {
           text-decoration: none;
           color: var(--feeds-title-weight, ${Default.title});
           font-weight: var(--feeds-title-weight, 500);
-        }
-        
-        .feeds-title {
-          margin: 0;
           font-size: var(--feeds-title-size, 1rem);
           margin-top: .5rem;
+          display: block;
         }
 
         .feeds-category {
@@ -144,6 +139,7 @@ export function initPlugin (config) {
 
         .feeds-row .feeds-content {
           text-align: center;
+          width: 100%;
         }
       `)
     }
