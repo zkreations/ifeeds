@@ -96,7 +96,7 @@
       if (Default.styles) {
         createStyle(`
         .widget-feeds {
-          --feeds-image-margin: 1rem;
+          --feeds-margin: 1rem;
           --feeds-gap: 1.25rem;
           --feeds-border: ${Default.border};
           padding: var(--feeds-gap);
@@ -104,7 +104,7 @@
           max-width: 100%;
           border: 1px solid var(--feeds-border);
           border-radius: .5rem;
-          background: ${Default.background};
+          background: var(--feeds-background, ${Default.background});
         }
 
         .widget-feeds,
@@ -123,12 +123,12 @@
         }
 
         .feeds-column .feeds-header {
-          margin-right: var(--feeds-image-margin);
+          margin-right: var(--feeds-margin);
           width: 80px;
         }
 
         .feeds-row .feeds-header {
-          margin-bottom: var(--feeds-image-margin);
+          margin-bottom: var(--feeds-margin);
           width: 100%;
           --feeds-ratio-y: 9;
           --feeds-ratio-x: 16;
@@ -149,9 +149,9 @@
         
         .feeds-link {
           text-decoration: none;
-          color: var(--feeds-title-weight, ${Default.title});
-          font-weight: var(--feeds-title-weight, 500);
-          font-size: var(--feeds-title-size, 1rem);
+          color: var(--feeds-title-color, ${Default.title});
+          font-weight: 500;
+          font-size: 1rem;
           margin-top: .5rem;
           display: block;
         }
@@ -161,7 +161,7 @@
           text-decoration: none;
           display: inline-block;
           border-radius: 5rem;
-          padding: var(--feeds-category-padding, .25rem .875rem);
+          padding: .25rem .875rem;
           background-color: var(--feeds-category-bg, ${Default.categorybg});
           color: var(--feeds-category-color, ${Default.category});
           font-size: .875rem;
