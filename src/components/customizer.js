@@ -27,11 +27,11 @@ export function initCustomizer (config) {
   const button = RESULTS.querySelector('button')
 
   function copyArea (textarea, data) {
-    textarea.value = `<script src='https://cdn.jsdelivr.net/npm/ifeeds@1/dist/js/feeds.min.js'></script>
+    textarea.value = `<div class="widget-feeds"></div>
+<script src='https://cdn.jsdelivr.net/npm/ifeeds@1/dist/js/feeds.min.js'></script>
 <script>Feeds.initPlugin({
   max: ${data.max}, direction: '${data.direction}', background: '${data.background}', title: '${data.title}', category: '${data.category}', categorybg: '${data.categorybg}', border: '${data.border}', url: '${data.url}', label: '${data.label}'
-})
-</script>`
+})</script>`
   }
 
   button.onclick = () => {
