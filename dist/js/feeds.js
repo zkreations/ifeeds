@@ -21,7 +21,7 @@
   const Defaults = {
     url: window.location.origin + '/',
     max: 5,
-    direction: 'row',
+    direction: 'column',
     image: 'https://i.imgur.com/snnjdGS.png',
     imageSize: 'w300-h240-c',
     title: '#212121',
