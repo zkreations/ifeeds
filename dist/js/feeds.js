@@ -1,8 +1,5 @@
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Feeds = factory());
-})(this, (function () { 'use strict';
+var Feeds = (function () {
+  'use strict';
 
   const REG_EXP = /s\d{2}(-w\d{3}-h\d{3})?-c/;
   function getFirstImage(code) {
@@ -263,4 +260,4 @@
 
   return main;
 
-}));
+})();

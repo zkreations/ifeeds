@@ -5,7 +5,7 @@ export default {
   input: 'src/main.js',
   output: {
     file: 'dist/js/feeds.js',
-    format: 'umd',
+    format: 'iife',
     name: 'Feeds'
   },
   plugins: [
