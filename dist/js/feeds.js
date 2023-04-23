@@ -24,6 +24,7 @@
     direction: 'column',
     image: 'https://i.imgur.com/snnjdGS.png',
     imageSize: 'w300-h240-c',
+    thumbnailSize: 's80-c',
     title: '#212121',
     category: '#212121',
     categorybg: '#f1f1f1',
@@ -67,7 +68,8 @@
     return {
       url: getAlternateLink(entry.link),
       title: entry.title.$t,
-      img: resizeImage(image, isYoutubeUrl(image) ? 'mqdefault' : dataset.imageSize),
+      image: resizeImage(image, isYoutubeUrl(image) ? 'mqdefault' : dataset.imageSize),
+      thumbnail: resizeImage(image, isYoutubeUrl(image) ? 'mqdefault' : dataset.thumbnailSize),
       category: category ? category[0].term : 'no category'
     };
   }
@@ -79,7 +81,7 @@
     };
     const template = `<div class='feeds-item'>
       <a target="_blank" href='{{url}}' class='feeds-header'>
-        <img class='feeds-image' src='{{img}}'/>
+        <img class='feeds-image' src='${Default.direction === 'column' ? '{{thumbnail}}' : '{{image}}'}' alt='{{title}}' />
       </a>
       <div class='feeds-content'>
         <a class='feeds-category' target="_blank" href='${Default.url}search/label/{{category}}'>{{category}}</a>

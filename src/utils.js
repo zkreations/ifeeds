@@ -22,6 +22,7 @@ export const Defaults = {
   direction: 'column',
   image: 'https://i.imgur.com/snnjdGS.png',
   imageSize: 'w300-h240-c',
+  thumbnailSize: 's80-c',
   title: '#212121',
   category: '#212121',
   categorybg: '#f1f1f1',
@@ -80,7 +81,8 @@ export function sanitizeEntry (entry, dataset) {
   return {
     url: getAlternateLink(entry.link),
     title: entry.title.$t,
-    img: resizeImage(image, isYoutubeUrl(image) ? 'mqdefault' : dataset.imageSize),
+    image: resizeImage(image, isYoutubeUrl(image) ? 'mqdefault' : dataset.imageSize),
+    thumbnail: resizeImage(image, isYoutubeUrl(image) ? 'mqdefault' : dataset.thumbnailSize),
     category: category ? category[0].term : 'no category'
   }
 }

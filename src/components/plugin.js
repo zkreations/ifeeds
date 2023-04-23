@@ -14,7 +14,7 @@ export function initPlugin (config) {
 
   const template = `<div class='feeds-item'>
       <a target="_blank" href='{{url}}' class='feeds-header'>
-        <img class='feeds-image' src='{{img}}'/>
+        <img class='feeds-image' src='${Default.direction === 'column' ? '{{thumbnail}}' : '{{image}}'}' alt='{{title}}' />
       </a>
       <div class='feeds-content'>
         <a class='feeds-category' target="_blank" href='${Default.url}search/label/{{category}}'>{{category}}</a>
