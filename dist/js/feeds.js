@@ -1,13 +1,18 @@
 var Feeds = (function () {
   'use strict';
 
+  // Regex to get the image size
   const REG_EXP = /s\d{2}(-w\d{3}-h\d{3})?-c/;
+
+  // Get the first image from the content
   function getFirstImage(code) {
     const temporal = document.createElement('div');
     temporal.innerHTML = code;
     const img = temporal.querySelector('img');
     return img ? img.src : '';
   }
+
+  // Get real post link
   function getAlternateLink(links) {
     for (const link of links) {
       if (link.rel === 'alternate') {
@@ -15,6 +20,8 @@ var Feeds = (function () {
       }
     }
   }
+
+  // Default values
   const Defaults = {
     url: window.location.origin + '/',
     max: 5,
@@ -30,34 +37,49 @@ var Feeds = (function () {
     label: '',
     styles: true
   };
+
+  // Create and remove script
   function createScript(src) {
     const $script = document.createElement('script');
     $script.src = src;
     document.body.appendChild($script).parentNode.removeChild($script);
   }
+
+  // Create and minify style
   function createStyle(string) {
     const styleElement = document.getElementById('widget-feeds');
     if (styleElement) {
       styleElement.remove();
     }
+    string = string.replace(/\s+/g, ' ');
+    string = string.replace(/\s*([:;{},])\s*/g, '$1');
+    string = string.trim();
     const style = document.createElement('style');
     style.id = 'widget-feeds';
     style.textContent = string;
     document.head.appendChild(style);
   }
+
+  // Check if the image is from youtube
   function isYoutubeUrl(url) {
     if (url == null || typeof url !== 'string') return false;
     return url.includes('img.youtube.com');
   }
+
+  // Resize the image
   function resizeImage(imgUrl, size) {
     if (isYoutubeUrl(imgUrl)) {
       return imgUrl.replace('default', size);
     }
     return imgUrl.replace(REG_EXP, size);
   }
+
+  // Templating
   function templating(template, data) {
     return template.replace(/\{\{(.*?)\}\}/g, (_, key) => data[key]);
   }
+
+  // Sanitize the entry
   function sanitizeEntry(entry, dataset) {
     const content = entry.content ? entry.content.$t : entry.summary.$t;
     const category = entry.category !== null ? entry.category : false;
@@ -199,8 +221,7 @@ var Feeds = (function () {
         .feeds-row .feeds-content {
           text-align: center;
           width: 100%;
-        }
-      `);
+        }`);
       }
       CONTAINER.className = `widget-feeds feeds-${Default.direction}`;
       CONTAINER.innerHTML = '';

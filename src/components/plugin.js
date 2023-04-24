@@ -23,7 +23,6 @@ export function initPlugin (config) {
     </div>`
 
   const CONTAINER = document.querySelector('.widget-feeds')
-
   const label = Default.label
 
   createScript(`${Default.url}feeds/posts/default${label ? `/-/${label}` : ''}?alt=json-in-script&callback=ifeeds&max-results=${Default.max}`)
@@ -140,8 +139,7 @@ export function initPlugin (config) {
         .feeds-row .feeds-content {
           text-align: center;
           width: 100%;
-        }
-      `)
+        }`)
     }
 
     CONTAINER.className = `widget-feeds feeds-${Default.direction}`

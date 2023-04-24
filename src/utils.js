@@ -1,5 +1,7 @@
+// Regex to get the image size
 const REG_EXP = /s\d{2}(-w\d{3}-h\d{3})?-c/
 
+// Get the first image from the content
 export function getFirstImage (code) {
   const temporal = document.createElement('div')
   temporal.innerHTML = code
@@ -8,6 +10,7 @@ export function getFirstImage (code) {
   return img ? img.src : ''
 }
 
+// Get real post link
 export function getAlternateLink (links) {
   for (const link of links) {
     if (link.rel === 'alternate') {
@@ -16,6 +19,7 @@ export function getAlternateLink (links) {
   }
 }
 
+// Default values
 export const Defaults = {
   url: window.location.origin + '/',
   max: 5,
@@ -32,12 +36,14 @@ export const Defaults = {
   styles: true
 }
 
+// Create and remove script
 export function createScript (src) {
   const $script = document.createElement('script')
   $script.src = src
   document.body.appendChild($script).parentNode.removeChild($script)
 }
 
+// Create and minify style
 export function createStyle (string) {
   const styleElement = document.getElementById('widget-feeds')
 
@@ -45,31 +51,37 @@ export function createStyle (string) {
     styleElement.remove()
   }
 
+  string = string.replace(/\s+/g, ' ')
+  string = string.replace(/\s*([:;{},])\s*/g, '$1')
+  string = string.trim()
+
   const style = document.createElement('style')
   style.id = 'widget-feeds'
   style.textContent = string
   document.head.appendChild(style)
 }
 
+// Check if the image is from youtube
 export function isYoutubeUrl (url) {
   if (url == null || typeof url !== 'string') return false
-
   return url.includes('img.youtube.com')
 }
 
+// Resize the image
 export function resizeImage (imgUrl, size) {
   if (isYoutubeUrl(imgUrl)) {
     return imgUrl.replace('default', size)
   }
-
   return imgUrl.replace(REG_EXP, size)
 }
 
+// Templating
 export function templating (template, data) {
   return template
     .replace(/\{\{(.*?)\}\}/g, (_, key) => data[key])
 }
 
+// Sanitize the entry
 export function sanitizeEntry (entry, dataset) {
   const content = entry.content ? entry.content.$t : entry.summary.$t
   const category = entry.category !== null ? entry.category : false
