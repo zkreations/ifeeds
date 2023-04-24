@@ -234,13 +234,25 @@ var Feeds = (function () {
 
   const RESULTS = document.getElementById('dev-results');
   const CONTAINER = document.getElementById('dev-customizer');
-  function copied(button) {
-    const restore = button.innerText;
-    button.innerText = 'Código copiado';
-    setTimeout(function () {
-      button.innerText = restore;
+  const copied = (content, message) => {
+    if (!content) {
+      return;
+    }
+    content.classList.add('copied');
+    content.innerText = message.action;
+
+    // Cancel previous timeout
+    if (content.timeoutId) {
+      clearTimeout(content.timeoutId);
+    }
+
+    // Create new timeout
+    content.timeoutId = setTimeout(function () {
+      content.classList.remove('copied');
+      content.innerText = message.original;
+      content.timeoutId = null; // Clear timeoutId
     }, 2000);
-  }
+  };
   function initCustomizer(config) {
     const Default = {
       ...Defaults,
@@ -251,6 +263,7 @@ var Feeds = (function () {
     }
     const textarea = RESULTS.querySelector('textarea');
     const button = RESULTS.querySelector('button');
+    const buttonText = button.innerText;
     function copyArea(textarea, data) {
       textarea.value = `<div class="widget-feeds"></div>
 <script src='https://cdn.jsdelivr.net/npm/ifeeds@1/dist/js/feeds.min.js'></script>
@@ -260,7 +273,10 @@ var Feeds = (function () {
     }
     button.onclick = () => {
       navigator.clipboard.writeText(textarea.value).then(function () {
-        copied(button);
+        copied(button, {
+          action: 'Código copiado!',
+          original: buttonText
+        });
       });
     };
     initPlugin(Default);
