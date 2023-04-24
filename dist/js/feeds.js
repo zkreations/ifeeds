@@ -2,7 +2,7 @@ var Feeds = (function () {
   'use strict';
 
   // Regex to get the image size
-  const REG_EXP = /s\d{2}(-w\d{3}-h\d{3})?-c?(-n)/;
+  const REG_EXP = /s\d{2}(-w\d{3}-h\d{3})?(?:-c(?:-n)?)/;
 
   // Get the first image from the content
   function getFirstImage(code) {
